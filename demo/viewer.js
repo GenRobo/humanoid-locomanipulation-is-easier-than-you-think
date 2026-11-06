@@ -100,9 +100,9 @@ const OBJECT_COLORS = {
 
 function floorTexture() {
   return canvasTexture(1024, 1024, (ctx, w, h) => {
-    ctx.fillStyle = '#ebe4d6'; ctx.fillRect(0, 0, w, h);
+    ctx.fillStyle = '#e8eaed'; ctx.fillRect(0, 0, w, h);
     noise(ctx, w, h, 0.04, 30000);
-    ctx.strokeStyle = 'rgba(110,90,60,0.20)'; ctx.lineWidth = 2;
+    ctx.strokeStyle = 'rgba(40,52,64,0.16)'; ctx.lineWidth = 2;
     for (let i = 0; i <= 8; i++) {
       ctx.beginPath(); ctx.moveTo(i * w / 8, 0); ctx.lineTo(i * w / 8, h); ctx.stroke();
       ctx.beginPath(); ctx.moveTo(0, i * h / 8); ctx.lineTo(w, i * h / 8); ctx.stroke();
@@ -124,8 +124,8 @@ export class Viewer {
     this.renderer = renderer;
 
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xebe4d6);
-    scene.fog = new THREE.Fog(0xebe4d6, 9, 22);
+    scene.background = new THREE.Color(0xeceef1);
+    scene.fog = new THREE.Fog(0xeceef1, 9, 22);
     this.scene = scene;
     this.camera = new THREE.PerspectiveCamera(40, 1, 0.05, 60);
     this.camera.position.set(2.6, 2.4, 4.0);
@@ -136,7 +136,7 @@ export class Viewer {
     this.controls.minDistance = 0.8;
     this.controls.maxDistance = 14;
 
-    scene.add(new THREE.HemisphereLight(0xfffaf0, 0x9a8f80, 1.6));
+    scene.add(new THREE.HemisphereLight(0xffffff, 0x8d949c, 1.6));
     const sun = new THREE.DirectionalLight(0xffffff, 2.2);
     sun.position.set(3, 6, 2);
     sun.castShadow = true;

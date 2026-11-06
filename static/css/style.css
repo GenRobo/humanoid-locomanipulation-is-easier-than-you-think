@@ -288,3 +288,80 @@ figure { position: relative; }
 
 #real-robot .grid2 video { aspect-ratio: 8 / 7; object-fit: cover; }
 .figure.narrow img { max-width: 760px; display: block; margin: 0 auto; }
+
+/* clean light theme: white cards on light grey, geometric headings ---------------------- */
+:root {
+  --bg: #f7f7f8;
+  --bg-alt: #f0f1f3;
+  --panel: #ffffff;
+  --paper: #ffffff;
+  --stage: #eceef1;
+  --ink: #1a1a1a;
+  --ink-soft: #4a4a4a;
+  --ink-faint: #7a7a7a;
+  --line: #e5e6e8;
+  --accent: #1a1a1a;
+  --accent-ink: #ffffff;
+  --hl: #176c73;
+  --radius: 16px;
+  --card-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.06);
+  --sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --serif: "Space Grotesk", "Inter", system-ui, -apple-system, sans-serif;
+  --mono: "Fira Code", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+body { font-size: 15.5px; line-height: 1.7; color: var(--ink-soft); }
+h1, h2, h3 { font-family: var(--serif); color: var(--ink); letter-spacing: -0.02em; }
+h2 { font-weight: 600; font-size: clamp(24px, 3vw, 30px); }
+h2::after { content: ""; display: block; height: 3px; margin-top: 14px; border-radius: 2px;
+  background: linear-gradient(90deg, var(--hl) 0%, rgba(23, 108, 115, 0.25) 45%, rgba(23, 108, 115, 0) 85%); }
+h3 { font-weight: 600; font-size: 18px; }
+p b, li b, td b { color: var(--ink); }
+
+/* hero card */
+.hero { padding: 28px 0 8px; }
+.hero .wrap { width: calc(100% - 32px); background: var(--paper); border-radius: 24px; box-shadow: var(--card-shadow); padding: 48px 40px 36px; }
+.hero h1 { font-weight: 600; font-size: clamp(30px, 4.6vw, 50px); line-height: 1.12; letter-spacing: -0.03em; margin: 0 0 18px; }
+.authors { font-size: 15.5px; color: var(--ink-soft); }
+.tagline { font: 400 18px/1.55 var(--serif); color: var(--ink-soft); letter-spacing: -0.005em; }
+.links { gap: 12px; margin-bottom: 18px; }
+.links .btn { border-radius: 10px; padding: 12px 22px; border: 0; background: var(--ink); color: #fff; font: 600 14.5px/1.2 var(--sans); }
+.links .btn:first-child { background: var(--cta); color: var(--cta-ink); }
+.links .btn:hover { opacity: 0.88; border: 0; }
+.venue-pill { display: inline-block; margin: 0; padding: 6px 16px; border-radius: 8px; border: 1px solid var(--line);
+  background: var(--bg-alt); color: var(--hl); font: 600 13px/1.4 var(--mono); letter-spacing: 0.02em; }
+
+/* demo: no band, the stage and panel become cards */
+.demo-section { background: transparent; border: 0; margin-top: 0; }
+.demo-stage { border: 0; border-radius: var(--radius); box-shadow: var(--card-shadow); }
+.loading { background: rgba(236, 238, 241, 0.94); }
+.hud span { background: rgba(26, 26, 26, 0.72); color: #fff; }
+.panel { border: 0; border-radius: var(--radius); box-shadow: var(--card-shadow); background: var(--paper); }
+.ctl-label { font: 500 11px/1.4 var(--mono); letter-spacing: 0.08em; color: var(--hl); }
+.chip, select, .seg button { background: var(--bg); }
+.chip.on, .seg button.on { background: var(--ink); border-color: var(--ink); color: #fff; }
+input[type="range"] { accent-color: var(--hl); }
+.loading .bar { background: rgba(0, 0, 0, 0.08); }
+
+/* cards: figures, stats, comparison, tables */
+.figure, .stat, .card, .h2h { background: var(--paper); border: 0; border-radius: var(--radius); box-shadow: var(--card-shadow); }
+.figure { padding: 20px; }
+.stat { padding: 18px 20px; }
+.stat .num, .card .big { font-family: var(--serif); font-weight: 600; letter-spacing: -0.02em; }
+.stats-note, .caption-center, .car-count, .demo-note { color: var(--ink-faint); }
+.stage-strip { border: 0; border-radius: var(--radius); box-shadow: var(--card-shadow); }
+.stage-step { background: var(--paper); }
+.stage-step + .stage-step { border-left: 1px solid var(--line); }
+.stage-step b { color: var(--hl); font-family: var(--serif); }
+.insight { border-left: 3px solid var(--hl); }
+input[type="checkbox"] { accent-color: var(--hl); }
+.table td { color: var(--ink); }
+.gallery video, .grid2 video, .single video, .teaser video { border-radius: 14px; }
+.gallery .clip-title { font-family: var(--serif); font-weight: 600; color: var(--ink); }
+figcaption { font-size: 13.5px; color: var(--ink-faint); text-align: center; }
+.figure figcaption { text-align: left; }
+.car-btn { background: rgba(255, 255, 255, 0.94); border: 0; box-shadow: var(--card-shadow); }
+.expand { background: rgba(26, 26, 26, 0.6); color: #fff; }
+.tag { background: var(--bg-alt); color: var(--hl); border-color: var(--line); }
+pre { background: var(--paper); border: 0; box-shadow: var(--card-shadow); }
+.footer { text-align: center; border-top: 0; }
+@media (max-width: 640px) { .hero .wrap { padding: 32px 18px 26px; border-radius: 18px; } }
