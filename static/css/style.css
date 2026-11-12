@@ -365,3 +365,46 @@ figcaption { font-size: 13.5px; color: var(--ink-faint); text-align: center; }
 pre { background: var(--paper); border: 0; box-shadow: var(--card-shadow); }
 .footer { text-align: center; border-top: 0; }
 @media (max-width: 640px) { .hero .wrap { padding: 32px 18px 26px; border-radius: 18px; } }
+
+/* affiliations: General Robotics and NUS ------------------------------------------------- */
+.authors { margin-bottom: 16px; }
+.authors sup { font-size: 0.66em; line-height: 0; color: var(--ink-faint); margin-left: 1px; }
+.affils { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 14px 40px; margin: 0 0 8px; }
+.affil { display: inline-flex; align-items: flex-start; gap: 4px; color: var(--ink-faint); text-decoration: none; transition: opacity 0.15s; }
+.affil:hover { opacity: 0.75; }
+.affil sup { font: 600 12px/1 var(--sans); }
+.affils img { width: auto; }
+.affils .logo-gr { height: 19px; }
+.affils .logo-nus { height: 44px; }
+.affil-note { font-size: 13px; color: var(--ink-faint); margin: 0 0 20px; }
+
+/* a small, quiet badge in the demo viewer, so anyone playing sees where the work is from;
+   it never takes pointer events, so dragging and orbiting underneath it still work */
+.stage-brand { position: absolute; right: 12px; bottom: 12px; z-index: 3; display: flex; align-items: center; gap: 10px;
+  padding: 6px 12px; border-radius: 10px; background: rgba(255, 255, 255, 0.74);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 4px 14px rgba(0, 0, 0, 0.06);
+  pointer-events: none; -webkit-user-select: none; user-select: none; }
+.stage-brand img { width: auto; opacity: 0.92; }
+.stage-brand .logo-gr { height: 12px; }
+.stage-brand .logo-nus { height: 30px; }
+.stage-brand .sep { width: 1px; align-self: stretch; background: rgba(0, 0, 0, 0.14); }
+.demo-stage .help { right: 280px; }
+
+.footer-logos { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 14px 36px; margin-bottom: 14px; }
+.footer-logos a { display: block; opacity: 0.8; transition: opacity 0.15s; }
+.footer-logos a:hover { opacity: 1; }
+.footer-logos img { width: auto; }
+.footer-logos .logo-gr { height: 15px; }
+.footer-logos .logo-nus { height: 34px; }
+
+@media (max-width: 640px) {
+  .affils { gap: 12px 28px; }
+  .affils .logo-gr { height: 16px; }
+  .affils .logo-nus { height: 38px; }
+  /* phones: the help text needs the full width at the bottom, so the badge sits under the timer */
+  .stage-brand { top: 46px; bottom: auto; padding: 5px 9px; gap: 8px; border-radius: 8px; }
+  .stage-brand .logo-gr { height: 9px; }
+  .stage-brand .logo-nus { height: 23px; }
+  .demo-stage .help { right: 12px; }
+}
