@@ -408,3 +408,37 @@ pre { background: var(--paper); border: 0; box-shadow: var(--card-shadow); }
   .stage-brand .logo-nus { height: 23px; }
   .demo-stage .help { right: 12px; }
 }
+
+/* full screen demo ------------------------------------------------------------------------ */
+.hud-r { display: flex; align-items: center; gap: 8px; }
+.fs-btn { pointer-events: auto; display: inline-flex; align-items: center; gap: 6px; border: 0; border-radius: 999px; padding: 6px 12px 6px 10px;
+  background: rgba(26, 26, 26, 0.72); color: #fff; font: 600 13px/1.2 var(--sans); cursor: pointer;
+  -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); transition: background 0.15s; touch-action: manipulation; }
+.fs-btn:hover { background: rgba(26, 26, 26, 0.88); }
+.fs-btn:focus-visible { outline: 2px solid var(--hl); outline-offset: 2px; }
+.fs-btn svg { width: 15px; height: 15px; flex: none; }
+.hud .fs-btn span { background: none; padding: 0; border-radius: 0; -webkit-backdrop-filter: none; backdrop-filter: none; font: inherit; color: inherit; }
+.fs-btn .fs-close, .fs-btn.on .fs-open { display: none; }
+.fs-btn.on .fs-close { display: block; }
+
+/* the stage and controls fill the screen: side by side in landscape, stacked in portrait */
+.demo.is-fullscreen { position: fixed; inset: 0; z-index: 1000; margin: 0; width: 100%; height: 100%; max-width: none; box-sizing: border-box;
+  padding: max(12px, env(safe-area-inset-top, 0px)) max(12px, env(safe-area-inset-right, 0px)) max(12px, env(safe-area-inset-bottom, 0px)) max(12px, env(safe-area-inset-left, 0px));
+  background: var(--bg); grid-template-columns: minmax(0, 1fr) 300px; grid-template-rows: minmax(0, 1fr); gap: 12px; overflow: hidden; }
+.demo.is-fullscreen .demo-stage { height: 100%; min-height: 0; aspect-ratio: auto; }
+.demo.is-fullscreen .panel { min-height: 0; max-height: 100%; overflow-y: auto; overscroll-behavior: contain; }
+.demo:fullscreen::backdrop { background: #f7f7f8; }
+.demo-fs-lock, .demo-fs-lock body { overflow: hidden; }
+@media (orientation: portrait) {
+  .demo.is-fullscreen { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) auto; }
+  .demo.is-fullscreen .panel { max-height: 42vh; max-height: 42dvh; }
+}
+/* tablets in portrait: the controls flow into balanced columns under the stage */
+@media (orientation: portrait) and (min-width: 700px) {
+  .demo.is-fullscreen .panel { display: block; max-height: none; column-width: 230px; column-gap: 20px; }
+  .demo.is-fullscreen .panel > * { break-inside: avoid; margin: 0 0 12px; }
+}
+@media (max-width: 640px) {
+  .fs-btn { padding: 6px 8px; }
+  .fs-btn .fs-label { display: none; }
+}

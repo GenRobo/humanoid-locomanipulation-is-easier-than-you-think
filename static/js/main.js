@@ -169,3 +169,49 @@ for (const fig of document.querySelectorAll('figure')) {
   video.style.cursor = 'zoom-in';
   video.addEventListener('click', open);
 }
+
+// Full screen for the live demo (stage and controls). Laptops and iPads use the Fullscreen API
+// (prefixed on older iPadOS Safari); where it is missing or refused, e.g. iPhone Safari, the demo
+// instead fills the window as a fixed overlay. The viewer follows the new size by itself.
+const demoBox = document.querySelector('#demo .demo');
+const fsBtn = document.getElementById('btn-fullscreen');
+if (demoBox && fsBtn) {
+  const nativeEl = () => document.fullscreenElement || document.webkitFullscreenElement || null;
+  const canNative = !!(demoBox.requestFullscreen || demoBox.webkitRequestFullscreen)
+    && (document.fullscreenEnabled || document.webkitFullscreenEnabled) !== false;
+  let overlay = false;
+  const isOn = () => overlay || nativeEl() === demoBox;
+  const sync = () => {
+    const on = isOn();
+    demoBox.classList.toggle('is-fullscreen', on);
+    document.documentElement.classList.toggle('demo-fs-lock', overlay);
+    fsBtn.classList.toggle('on', on);
+    fsBtn.setAttribute('aria-pressed', String(on));
+    const label = on ? 'Exit full screen' : 'Full screen';
+    fsBtn.setAttribute('aria-label', label);
+    fsBtn.title = label;
+    fsBtn.querySelector('.fs-label').textContent = label;
+  };
+  const useOverlay = () => { overlay = true; sync(); };
+  const enter = () => {
+    if (!canNative) return useOverlay();
+    try {
+      const p = demoBox.requestFullscreen ? demoBox.requestFullscreen({ navigationUI: 'hide' }) : demoBox.webkitRequestFullscreen();
+      if (p && p.catch) p.catch(useOverlay);
+    } catch (e) {
+      useOverlay();
+    }
+  };
+  const exit = () => {
+    if (overlay) { overlay = false; sync(); return; }
+    if (document.exitFullscreen) document.exitFullscreen().catch(() => {});
+    else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+  };
+  fsBtn.addEventListener('click', () => (isOn() ? exit() : enter()));
+  document.addEventListener('fullscreenchange', sync);
+  document.addEventListener('webkitfullscreenchange', sync);
+  // older iPadOS Safari reports a refused request with an event rather than a rejected promise
+  document.addEventListener('fullscreenerror', useOverlay);
+  document.addEventListener('webkitfullscreenerror', useOverlay);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && overlay) exit(); });
+}

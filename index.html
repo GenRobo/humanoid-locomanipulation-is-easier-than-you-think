@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500;600&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="static/css/style.css">
+  <link rel="stylesheet" href="static/css/style.css?v=20261112-2">
   <script type="importmap">
     { "imports": { "three": "./vendor/three/three.module.min.js", "three/addons/": "./vendor/three/addons/" } }
   </script>
@@ -47,7 +47,14 @@
             <div id="viewer" class="viewer"></div>
             <div class="hud">
               <span id="hud-phase" class="phase">Loading…</span>
-              <span id="hud-time" class="time">0.0 s</span>
+              <div class="hud-r">
+                <span id="hud-time" class="time">0.0 s</span>
+                <button id="btn-fullscreen" class="fs-btn" type="button" aria-pressed="false" aria-label="Full screen" title="Full screen">
+                  <svg class="fs-open" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <svg class="fs-close" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4v5H4M20 9h-5V4M15 20v-5h5M4 15h5v5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <span class="fs-label">Full screen</span>
+                </button>
+              </div>
             </div>
             <div class="help">
               <span class="setup-only">Drag to move · drag a ring to turn · </span>
@@ -314,7 +321,7 @@
     <p>Humanoid Locomanipulation Is Easier Than You Think · CoRL 2026 Workshop</p>
   </footer>
 
-  <script type="module" src="static/js/main.js"></script>
+  <script type="module" src="static/js/main.js?v=20261112-2"></script>
   <script type="module" src="demo/app.js"></script>
 </body>
 </html>
